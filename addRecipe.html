@@ -15,20 +15,20 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
                 <div class="container-fluid ">
-                  <a class="navbar-brand" href="#"><img width="32" height="32" src="https://img.icons8.com/external-febrian-hidayat-gradient-febrian-hidayat/32/external-Chef-Hat-kitchen-and-tableware-febrian-hidayat-gradient-febrian-hidayat.png" alt="external-Chef-Hat-kitchen-and-tableware-febrian-hidayat-gradient-febrian-hidayat"/></a>
+                  <a class="navbar-brand" href="./index.html"><img width="32" height="32" src="https://img.icons8.com/external-febrian-hidayat-gradient-febrian-hidayat/32/external-Chef-Hat-kitchen-and-tableware-febrian-hidayat-gradient-febrian-hidayat.png" alt="external-Chef-Hat-kitchen-and-tableware-febrian-hidayat-gradient-febrian-hidayat"/></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active home-a" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active home-a" aria-current="page" href="./index.html">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Categories</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./addRecipe.html">Add Recipe</a>
+                        <a class="nav-link" href="#">Add Recipe</a>
                       </li>
                     </ul>
                     <form id="keyword-search" class="d-flex" role="search">
@@ -38,36 +38,28 @@
                   </div>
                 </div>
               </nav>
-              <div id="div-header">
-                <h1>RECIPIES BOOK</h1>
-                <div class="search-container-2-flex-row">
-                    <div class="search-container-2-column">
-                        <h3>Search by category</h3>
-                        <input type="text" class="form-control" name="category"  value="" placeholder="Category"/>
-                        <button type="button" class="btn btn-outline-success btn-search">Search</button>
-                    </div>
-                    <div class="search-container-2-column">
-                        <h3>Search by ingredients</h3>
-                        <input type="text" class="form-control" name="category"  value="" placeholder="Ingredients"/>
-                        <button type="button" class="btn btn-outline-success btn-search">Search</button>
-                    </div>
-
-                </div>
-              </div>
         </header>
-        <section id="recipies-section">
+        
+        <form id="add-recipe" action="../index.html" method="post">
 
-        </section>
-        <section>
-            <div class="show-container">
-                <div class="show-child-div">
-                    <button id="popular-recipies" type="button" class="btn btn-lg btn-outline-success btn-search">Show popular recipies</button>
-                </div>
-                <div class="show-child-div">   
-                    <button id="all-recipies" type="button" class="btn btn-lg btn-outline-success btn-search">Show all recipies</button>
-                </div>
-            </div>
-        </section>
+                <label class="form-label" for="title">Title: </label>
+                <input name="title" value="" class="form-input-text form-control" id="title" type="text">
+
+                <label class="form-label" for="category">Category: </label>
+                <input name="category" value="" class="form-input-text form-control" id="category" type="text">
+
+                <label class="form-label" for="ingredients">Ingredients: </label>
+                <textarea name="ingredients" value="" class="form-input-text form-control-lg" id="ingredients" type="text" rows="5" cols="45"></textarea>
+
+                <label class="form-label" for="instructions">Instructions: </label>
+                <textarea name="instructions" value="" class="form-input-text form-control-lg" id="instructions" type="textarea" rows="8" cols="45"></textarea>
+
+                <div class="div-checkbox"><input id="popular" type="checkbox" name="popular" value="false"><label>Popular</label></div>
+
+                <button id="add-recipe-button" class="btn btn-lg btn-outline-success" type="button">ADD</button>
+            
+        </form>
+        
 
         <footer id="footer">
             <h6 class="footer-text">E-mail Me or find me on LinkedIN</h6>
@@ -84,7 +76,7 @@
     
         </footer>
 
-        <script type="" src="./index.js" ></script>
+        <script type="" src="./addRecipe.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

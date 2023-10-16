@@ -53,7 +53,7 @@ homeClick.addEventListener("click", handleHomeClick);
 // SHOW ALL RECIPIES
 let showAllRecipiesButton = document.querySelector("#all-recipies");
 
-showAllRecipiesButton.addEventListener("click", async (recipies) => {
+showAllRecipiesButton.addEventListener("click", (recipies) => {
     document.querySelector("#div-header").style.display = "none";
     // showAllRecipiesButton.style.display = "none";
     let recipies_section = document.querySelector("#recipies-section");
@@ -75,7 +75,7 @@ showAllRecipiesButton.addEventListener("click", async (recipies) => {
         let PCategory = document.createElement("p");
         PCategory.textContent = `Category: ${pCategory}`;
 
-        let pIngredients = recipe.ingredients.join("-");
+        let pIngredients = recipe.ingredients;
         let PIngredients = document.createElement("p");
         PIngredients.textContent = `Ingredients: ${pIngredients}`;
 
@@ -106,7 +106,7 @@ showAllRecipiesButton.addEventListener("click", async (recipies) => {
 // SHOW POPULAR RECIPIES
 let showPopularRecipiesButton = document.querySelector("#popular-recipies");
 
-showPopularRecipiesButton.addEventListener("click", async (recipies) => {
+showPopularRecipiesButton.addEventListener("click", (recipies) => {
     document.querySelector("#div-header").style.display = "none";
     // showAllRecipiesButton.style.display = "none";
     let recipies_section = document.querySelector("#recipies-section");
@@ -116,7 +116,7 @@ showPopularRecipiesButton.addEventListener("click", async (recipies) => {
     }
 
     for(let recipe of recipiesArray){
-        if(recipe.popular === true){
+        if(recipe.popular === "true"){
             let div = document.createElement("div");
         div.classList.add("recipe-div")
 
@@ -128,7 +128,7 @@ showPopularRecipiesButton.addEventListener("click", async (recipies) => {
         let PCategory = document.createElement("p");
         PCategory.textContent = `Category: ${pCategory}`;
 
-        let pIngredients = recipe.ingredients.join("-");
+        let pIngredients = recipe.ingredients;
         let PIngredients = document.createElement("p");
         PIngredients.textContent = `Ingredients: ${pIngredients}`;
 
@@ -157,3 +157,4 @@ showPopularRecipiesButton.addEventListener("click", async (recipies) => {
     recipies_section.style.display = "flex";
     recipies_section.classList.add("display-flex");
 });
+

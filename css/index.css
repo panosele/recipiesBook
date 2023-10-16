@@ -190,4 +190,61 @@ footer p{
         width: 85%;
         max-width: 100%;
     }
+
+    #add-recipe textarea{
+        max-width: 98%;
+    }
+
+    #add-recipe label {
+        max-width: 98%;
+    }
+
+    #add-recipe input {
+        max-width: 98%;
+        min-width: 95%;
+    }
 }
+
+
+/* ADD RECIPE */
+
+#add-recipe {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    margin: 4% auto;
+    text-align: center;
+}
+
+#add-recipe label {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-top: 2%;
+}
+
+#add-recipe input {
+    max-width: 32%;
+}
+
+#add-recipe button {
+    margin: 3% auto;
+    padding: 0.5% 2%;
+}
+
+.div-checkbox{
+    margin: 2% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-checkbox input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2%;
+}
+
+
