@@ -1,6 +1,3 @@
-// import {saveRecipe, retrieveRecipe, retriveAllRecipies, deleteRecipe} from './scripts/utils'
-
-
 // HELPER FUNCTIONS
 function saveRecipe(obj){
     localStorage.setItem(obj.title, JSON.stringify(obj));
@@ -40,9 +37,6 @@ let logoClick = document.querySelector(".navbar-brand");
 let homeClick = document.querySelector(".home-a");
 
 function handleHomeClick(){
-    // while (recipies_section.firstChild) {
-    //     recipies_section.removeChild(recipies_section.firstChild);
-    // }
     document.querySelector("#recipies-section").style.display = "none";
     document.querySelector("#div-header").style.display = "block";
 }
@@ -88,6 +82,9 @@ showAllRecipiesButton.addEventListener("click", (recipies) => {
         editButton.textContent = "EDIT";
 
         let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("value", recipe.title);
+        deleteButton.setAttribute("id", "delete-button");
+        deleteButton.setAttribute("type", "button");
         deleteButton.classList.add("btn", "btn-outline-danger");
         deleteButton.textContent = "DELETE";
         
@@ -141,6 +138,9 @@ showPopularRecipiesButton.addEventListener("click", (recipies) => {
         editButton.textContent = "EDIT";
 
         let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("value", recipe.title);
+        deleteButton.setAttribute("id", "delete-button");
+        deleteButton.setAttribute("type", "button");
         deleteButton.classList.add("btn", "btn-outline-danger");
         deleteButton.textContent = "DELETE";
         
@@ -157,4 +157,22 @@ showPopularRecipiesButton.addEventListener("click", (recipies) => {
     recipies_section.style.display = "flex";
     recipies_section.classList.add("display-flex");
 });
+
+// let deleteItemButton = document.querySelector("#delete-button");
+// deleteItemButton.addEventListener("click", () => {
+//     let title = deleteItemButton.parentElement.childNodes;
+//     console.log(title);
+// })
+
+document.addEventListener( "click", (event) => {
+    let element = event.target;
+    if(element.id === "delete-button"){
+        let title = element.parentElement.childNodes[0].textContent;
+        deleteRecipe(title);
+        element.parentElement.parentElement.parentElement.childNodes[5].childNodes[1].childNodes[1].childNodes[1].click();
+        // location.reload();
+    }
+
+} );
+
 

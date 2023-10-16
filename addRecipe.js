@@ -52,5 +52,6 @@ addRecipeButton.addEventListener("click", () => {
     }
 
     saveRecipe(newObj);
-    console.log(title.value, category.value, ingredients.value, instructions.value, popular.value);
+    
+    let homeLink = document.querySelector("#home-link").click();
 });
