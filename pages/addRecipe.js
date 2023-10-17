@@ -53,5 +53,5 @@ addRecipeButton.addEventListener("click", () => {
 
     saveRecipe(newObj);
     
-    let homeLink = document.querySelector("#home-link").click();
+    document.querySelector("#home-link").click();
 });
