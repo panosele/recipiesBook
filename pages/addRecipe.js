@@ -5,7 +5,11 @@ function retriveAllRecipies(){
         recipies.push(JSON.parse(retrivedObj)) ;
       });
       return recipies;
-}
+};
+
+function saveRecipe(obj){
+    localStorage.setItem(obj.title, JSON.stringify(obj));
+};
 
 // GET ALL RECIPIES ON WINDOW LOAD and YEAR FOR FOOTER
 let recipiesArray = [];
@@ -17,11 +21,6 @@ window.onload = (event) => {
     recipiesArray = retriveAllRecipies();
 };
 
-function saveRecipe(obj){
-    localStorage.setItem(obj.title, JSON.stringify(obj));
-}
-
-
 // CHECKBOX VALUE CHANGE
 let popularCheckbox = document.querySelector("#popular");
 popularCheckbox.addEventListener("click", () =>{
@@ -30,7 +29,7 @@ popularCheckbox.addEventListener("click", () =>{
     }else{
         popularCheckbox.setAttribute("value", "false");
     }
-})
+});
 
 // ADD RECIPE
 let addRecipeButton = document.querySelector("#add-recipe-button");
@@ -42,10 +41,9 @@ addRecipeButton.addEventListener("click", () => {
     let instructions = document.querySelector("#instructions");
     let popular = document.querySelector("#popular");
     
-
     let newObj = {
         title: title.value,
-        category: category.value,
+        category: category.value.toLowerCase(),
         ingredients: ingredients.value,
         instructons: instructions.value,
         popular: popular.value
