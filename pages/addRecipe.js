@@ -1,5 +1,5 @@
 function retriveAllRecipies(){
-    let recipies = [];
+    const recipies = [];
     Object.keys(localStorage).forEach(key => {
         let retrivedObj = localStorage.getItem(key);
         recipies.push(JSON.parse(retrivedObj)) ;
@@ -12,17 +12,17 @@ function saveRecipe(obj){
 };
 
 // GET ALL RECIPIES ON WINDOW LOAD and YEAR FOR FOOTER
-let recipiesArray = [];
+const recipiesArray = [];
 window.onload = (event) => {
-    let dt = new Date();
-    let par = document.querySelector("#copy-p");
+    const dt = new Date();
+    const par = document.querySelector("#copy-p");
     par.textContent = `@${dt.getFullYear()} Created by Panagiotis Eleftheriadis`;
 
     recipiesArray = retriveAllRecipies();
 };
 
 // CHECKBOX VALUE CHANGE
-let popularCheckbox = document.querySelector("#popular");
+const popularCheckbox = document.querySelector("#popular");
 popularCheckbox.addEventListener("click", () =>{
     if(popularCheckbox.value === "false"){
         popularCheckbox.setAttribute("value", "true");
@@ -32,16 +32,16 @@ popularCheckbox.addEventListener("click", () =>{
 });
 
 // ADD RECIPE
-let addRecipeButton = document.querySelector("#add-recipe-button");
+const addRecipeButton = document.querySelector("#add-recipe-button");
 
 addRecipeButton.addEventListener("click", () => {
-    let title = document.querySelector("#title");
-    let category = document.querySelector("#category");
-    let ingredients = document.querySelector("#ingredients");
-    let instructions = document.querySelector("#instructions");
-    let popular = document.querySelector("#popular");
+    const title = document.querySelector("#title");
+    const category = document.querySelector("#category");
+    const ingredients = document.querySelector("#ingredients");
+    const instructions = document.querySelector("#instructions");
+    const popular = document.querySelector("#popular");
     
-    let newObj = {
+    const newObj = {
         title: title.value,
         category: category.value.toLowerCase(),
         ingredients: ingredients.value,

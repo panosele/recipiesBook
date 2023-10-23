@@ -4,9 +4,9 @@ function retrieveRecipe(title){
 }
 
 function retriveAllRecipies(){
-    let recipies = [];
+    const recipies = [];
     Object.keys(localStorage).forEach(key => {
-        let retrivedObj = localStorage.getItem(key);
+        const retrivedObj = localStorage.getItem(key);
         recipies.push(JSON.parse(retrivedObj)) ;
       });
       return recipies;
@@ -18,23 +18,23 @@ function deleteRecipe(title) {
 
 // CREATE DIV FOR RECIPIE AND APPEND IT TO SECTION OF HTML
 function builtSectionRecipies(recipe, recipies_section){
-    let div = document.createElement("div");
+    const div = document.createElement("div");
             div.classList.add("recipe-div")
 
-            let h4 = recipe.title;
-            let H4 = document.createElement("h4");
+            const h4 = recipe.title;
+            const H4 = document.createElement("h4");
             H4.textContent = h4;
 
-            let pCategory = recipe.category;
-            let PCategory = document.createElement("p");
+            const pCategory = recipe.category;
+            const PCategory = document.createElement("p");
             PCategory.textContent = `Category: ${pCategory}`;
 
-            let pIngredients = recipe.ingredients;
-            let PIngredients = document.createElement("p");
+            const pIngredients = recipe.ingredients;
+            const PIngredients = document.createElement("p");
             PIngredients.textContent = `Ingredients: ${pIngredients}`;
 
-            let pInstructions = recipe.instructons;
-            let PInstructions = document.createElement("p");
+            const pInstructions = recipe.instructons;
+            const PInstructions = document.createElement("p");
             PInstructions.textContent = `Instructions: ${pInstructions}`;
 
             // let editButton = document.createElement("button");
@@ -44,7 +44,7 @@ function builtSectionRecipies(recipe, recipies_section){
             // editButton.classList.add("btn", "btn-outline-success");
             // editButton.textContent = "EDIT";
 
-            let deleteButton = document.createElement("button");
+            const deleteButton = document.createElement("button");
             deleteButton.setAttribute("value", recipe.title);
             deleteButton.setAttribute("id", "delete-button");
             deleteButton.setAttribute("type", "button");
@@ -61,16 +61,16 @@ function builtSectionRecipies(recipe, recipies_section){
 // GET ALL RECIPIES ON WINDOW LOAD and YEAR FOR FOOTER
 let recipiesArray = [];
 window.onload = (event) => {
-    let dt = new Date();
-    let par = document.querySelector("#copy-p");
+    const dt = new Date();
+    const par = document.querySelector("#copy-p");
     par.textContent = `@${dt.getFullYear()} Created by Panagiotis Eleftheriadis`;
 
     recipiesArray = retriveAllRecipies();
 };
 
 // HOME BUTTON AND LOGO CLICK
-let logoClick = document.querySelector(".navbar-brand");
-let homeClick = document.querySelector(".home-a");
+const logoClick = document.querySelector(".navbar-brand");
+const homeClick = document.querySelector(".home-a");
 
 function handleHomeClick(){
     document.querySelector("#recipies-section").style.display = "none";
@@ -81,11 +81,11 @@ logoClick.addEventListener("click", handleHomeClick);
 homeClick.addEventListener("click", handleHomeClick);
 
 // SHOW ALL RECIPIES
-let showAllRecipiesButton = document.querySelector("#all-recipies");
+const showAllRecipiesButton = document.querySelector("#all-recipies");
 
 showAllRecipiesButton.addEventListener("click", (recipies) => {
     document.querySelector("#div-header").style.display = "none";
-    let recipies_section = document.querySelector("#recipies-section");
+    const recipies_section = document.querySelector("#recipies-section");
 
     while (recipies_section.firstChild) {
         recipies_section.removeChild(recipies_section.firstChild);
@@ -100,11 +100,11 @@ showAllRecipiesButton.addEventListener("click", (recipies) => {
 });
 
 // SHOW POPULAR RECIPIES
-let showPopularRecipiesButton = document.querySelector("#popular-recipies");
+const showPopularRecipiesButton = document.querySelector("#popular-recipies");
 
 showPopularRecipiesButton.addEventListener("click", (recipies) => {
     document.querySelector("#div-header").style.display = "none";
-    let recipies_section = document.querySelector("#recipies-section");
+    const recipies_section = document.querySelector("#recipies-section");
 
     while (recipies_section.firstChild) {
         recipies_section.removeChild(recipies_section.firstChild);
@@ -123,7 +123,7 @@ showPopularRecipiesButton.addEventListener("click", (recipies) => {
 
 // EVENT LISTENER FOR DELETE BUTTON IN EACH RECIPIE
 document.addEventListener( "click", (event) => {
-    let element = event.target;
+    const element = event.target;
     if(element.id === "delete-button"){
         let title = element.parentElement.childNodes[0].textContent;
         deleteRecipe(title);
@@ -144,42 +144,51 @@ document.addEventListener( "click", (event) => {
 
 // CATEGORIES OF RECIPIES SHOW AND LINK EACH CATEGORY WITH ITS RECIPIES
 
-let categoriesNavLink = document.querySelector(".categories-link");
+const categoriesNavLink = document.querySelector(".categories-link");
 
 categoriesNavLink.addEventListener("click", (event) => {
-    let categories = [];
+    const categories = [];
     document.querySelector("#div-header").style.display = "none";
-    let recipies_section = document.querySelector("#recipies-section");
+    const recipies_section = document.querySelector("#recipies-section");
     recipies_section.style.textAlign = "center";
 
     while (recipies_section.firstChild) {
         recipies_section.removeChild(recipies_section.firstChild);
     }
 
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.classList.add("recipe-div");
     div.style.textAlign = "center";
 
-    for(let recipe of recipiesArray){
-        if(!recipiesArray.includes(recipe.category)){
-            categories.push(recipe.category);
-            
-            let text = recipe.category.toUpperCase();
+    if(recipiesArray.length === 0){
+        const H4 = document.createElement("h4");
+        H4.textContent = "NO RECIPIES";
+        div.appendChild(H4);
 
-            let a = document.createElement("a");
-            a.style.textDecoration = "none";
-            a.style.color = "green";
-            a.style.cursor = "grab";
-            a.setAttribute("id", `${recipe.category}`);
-            a.setAttribute("class", "category-a-link");
-            a.textContent = text;
-
-            let H3 = document.createElement("h3");
-            H3.appendChild(a);
-
-            div.appendChild(H3);
+        window.alert("You have no recipies in your browser's local storage")
+    }else{
+        for(let recipe of recipiesArray){
+            if(!recipiesArray.includes(recipe.category)){
+                categories.push(recipe.category);
+                
+                const text = recipe.category.toUpperCase();
+    
+                const a = document.createElement("a");
+                a.style.textDecoration = "none";
+                a.style.color = "green";
+                a.style.cursor = "grab";
+                a.setAttribute("id", `${recipe.category}`);
+                a.setAttribute("class", "category-a-link");
+                a.textContent = text;
+    
+                const H3 = document.createElement("h3");
+                H3.appendChild(a);
+    
+                div.appendChild(H3);
+            }
         }
     }
+    
     
     recipies_section.appendChild(div);
     recipies_section.style.display = "flex";
@@ -188,7 +197,7 @@ categoriesNavLink.addEventListener("click", (event) => {
 
 // EVENT HANDLER FOR CATEGORY CLICK ON CATEGORIES LIST
 document.addEventListener( "click", (event) => {
-    let element = event.target;
+    const element = event.target;
     if(element.classList[0] === "category-a-link"){
         let category = element.id;
 
@@ -198,50 +207,62 @@ document.addEventListener( "click", (event) => {
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
         }
+        console.log(recipiesArray.length)
+        if(recipiesArray.length === 0){
+            const div = document.createElement("div");
+            div.classList.add("recipe-div")
 
-        for(let recipe of recipiesArray){
-            if(recipe.category === category){
-                let div = document.createElement("div");
-                div.classList.add("recipe-div")
+            const H4 = document.createElement("h4");
+            H4.textContent = "NO RECIPIES";
 
-                let h4 = recipe.title;
-                let H4 = document.createElement("h4");
-                H4.textContent = h4;
-
-                let pCategory = recipe.category;
-                let PCategory = document.createElement("p");
-                PCategory.textContent = `Category: ${pCategory}`;
-
-                let pIngredients = recipe.ingredients;
-                let PIngredients = document.createElement("p");
-                PIngredients.textContent = `Ingredients: ${pIngredients}`;
-
-                let pInstructions = recipe.instructons;
-                let PInstructions = document.createElement("p");
-                PInstructions.textContent = `Instructions: ${pInstructions}`;
-
-                // let editButton = document.createElement("button");
-                // editButton.setAttribute("value", recipe.title);
-                // editButton.setAttribute("id", "edit-button");
-                // editButton.setAttribute("type", "button");
-                // editButton.classList.add("btn", "btn-outline-success");
-                // editButton.textContent = "EDIT";
-
-                let deleteButton = document.createElement("button");
-                deleteButton.setAttribute("value", recipe.title);
-                deleteButton.setAttribute("id", "delete-button");
-                deleteButton.setAttribute("type", "button");
-                deleteButton.classList.add("btn", "btn-outline-danger");
-                deleteButton.textContent = "DELETE";
-                
-
-                // ADD TWO BUTTONS FOR EDIT AND DELETE RECIPE
-
-                div.append(H4, PCategory, PIngredients, PInstructions, deleteButton);
-                
-                recipies_section.appendChild(div)
-            } 
+            recipies_section.appendChild(div);
+            window.alert("You have no recipies in your browser's local storage")
+        }else{
+            for(let recipe of recipiesArray){
+                if(recipe.category === category){
+                    const div = document.createElement("div");
+                    div.classList.add("recipe-div")
+    
+                    const h4 = recipe.title;
+                    const H4 = document.createElement("h4");
+                    H4.textContent = h4;
+    
+                    const pCategory = recipe.category;
+                    const PCategory = document.createElement("p");
+                    PCategory.textContent = `Category: ${pCategory}`;
+    
+                    const pIngredients = recipe.ingredients;
+                    const PIngredients = document.createElement("p");
+                    PIngredients.textContent = `Ingredients: ${pIngredients}`;
+    
+                    const pInstructions = recipe.instructons;
+                    const PInstructions = document.createElement("p");
+                    PInstructions.textContent = `Instructions: ${pInstructions}`;
+    
+                    // let editButton = document.createElement("button");
+                    // editButton.setAttribute("value", recipe.title);
+                    // editButton.setAttribute("id", "edit-button");
+                    // editButton.setAttribute("type", "button");
+                    // editButton.classList.add("btn", "btn-outline-success");
+                    // editButton.textContent = "EDIT";
+    
+                    const deleteButton = document.createElement("button");
+                    deleteButton.setAttribute("value", recipe.title);
+                    deleteButton.setAttribute("id", "delete-button");
+                    deleteButton.setAttribute("type", "button");
+                    deleteButton.classList.add("btn", "btn-outline-danger");
+                    deleteButton.textContent = "DELETE";
+                    
+    
+                    // ADD TWO BUTTONS FOR EDIT AND DELETE RECIPE
+    
+                    div.append(H4, PCategory, PIngredients, PInstructions, deleteButton);
+                    
+                    recipies_section.appendChild(div)
+                } 
+            }
         }
+
         recipies_section.style.display = "flex";
         recipies_section.classList.add("display-flex");
     }
@@ -249,13 +270,13 @@ document.addEventListener( "click", (event) => {
 
 // SEARCH BY CATEGORY
 document.addEventListener("click", (event) =>{
-    let element = event.target;
+    const element = event.target;
     
     if(element.id === "category-search-button"){
-        let category = document.querySelector("#category-search-input").value;
+        const category = document.querySelector("#category-search-input").value;
 
         document.querySelector("#div-header").style.display = "none";
-        let recipies_section = document.querySelector("#recipies-section");
+        const recipies_section = document.querySelector("#recipies-section");
 
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
@@ -274,13 +295,13 @@ document.addEventListener("click", (event) =>{
 
 // SEARCH BY INGREDIENTS
 document.addEventListener("click", (event) =>{
-    let element = event.target;
+    const element = event.target;
     
     if(element.id === "ingredients-search-button"){
-        let ingredients = document.querySelector("#ingredients-search-input").value;
+        const ingredients = document.querySelector("#ingredients-search-input").value;
 
         document.querySelector("#div-header").style.display = "none";
-        let recipies_section = document.querySelector("#recipies-section");
+        const recipies_section = document.querySelector("#recipies-section");
 
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
@@ -299,13 +320,13 @@ document.addEventListener("click", (event) =>{
 
 // SEARCH BY KEYWORD 
 document.addEventListener("click", (event) =>{
-    let element = event.target;
+    const element = event.target;
     
     if(element.id === "keyword-search-button"){
-        let keyword = document.querySelector("#keyword-search-input").value;
+        const keyword = document.querySelector("#keyword-search-input").value;
 
         document.querySelector("#div-header").style.display = "none";
-        let recipies_section = document.querySelector("#recipies-section");
+        const recipies_section = document.querySelector("#recipies-section");
 
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
