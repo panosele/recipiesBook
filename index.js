@@ -5,7 +5,7 @@ function retrieveRecipe(title){
 
 function retriveAllRecipies(){
     const recipies = [];
-    Object.keys(localStorage).forEach(key => {
+    Object.keys(localStorage).forEach(async key => {
         const retrivedObj = localStorage.getItem(key);
         recipies.push(JSON.parse(retrivedObj)) ;
       });
@@ -94,7 +94,7 @@ showAllRecipiesButton.addEventListener("click", (recipies) => {
     for(let recipe of recipiesArray){
         builtSectionRecipies(recipe, recipies_section);
     }
-        
+    
     recipies_section.style.display = "flex";
     recipies_section.classList.add("display-flex");
 });
@@ -281,12 +281,25 @@ document.addEventListener("click", (event) =>{
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
         }
-
+        const found = false;
         for(let recipe of recipiesArray){
             if (recipe.category.toUpperCase().includes(category.toUpperCase())){
                 builtSectionRecipies(recipe, recipies_section);
+                found = true;
             }
         }
+
+        if(!found){
+            const div = document.createElement("div");
+            div.classList.add("recipe-div")
+
+            const H4 = document.createElement("h4");
+            H4.textContent = "NO RECIPIES FOUND";
+
+            div.appendChild(H4);
+            recipies_section.appendChild(div);
+        }
+
         recipies_section.style.display = "flex";
         recipies_section.classList.add("display-flex");
         category.value = "";
@@ -306,12 +319,24 @@ document.addEventListener("click", (event) =>{
         while (recipies_section.firstChild) {
             recipies_section.removeChild(recipies_section.firstChild);
         }
-
+        const found = false;
         for(let recipe of recipiesArray){
             if (recipe.ingredients.toUpperCase().includes(ingredients.toUpperCase())){
                 builtSectionRecipies(recipe, recipies_section);
+                found = true;
             }
         }
+        if(!found){
+            const div = document.createElement("div");
+            div.classList.add("recipe-div")
+
+            const H4 = document.createElement("h4");
+            H4.textContent = "NO RECIPIES FOUND";
+
+            div.appendChild(H4);
+            recipies_section.appendChild(div);
+        }
+
         recipies_section.style.display = "flex";
         recipies_section.classList.add("display-flex");
         ingredients.value = "";
@@ -332,13 +357,25 @@ document.addEventListener("click", (event) =>{
             recipies_section.removeChild(recipies_section.firstChild);
         }
 
+        const found = false;
         for(let recipe of recipiesArray){
             if (recipe.ingredients.concat(recipe.category, recipe.ingredients, recipe.instructons).toUpperCase().includes(keyword.toUpperCase())){
                 builtSectionRecipies(recipe, recipies_section);
+                found = true;
             }
+        }
+        if(!found){
+            const div = document.createElement("div");
+            div.classList.add("recipe-div")
+
+            const H4 = document.createElement("h4");
+            H4.textContent = "NO RECIPIES FOUND";
+
+            div.appendChild(H4);
+            recipies_section.appendChild(div);
         }
         recipies_section.style.display = "flex";
         recipies_section.classList.add("display-flex");
-        keyword.value = "";
+        // keyword.value = "";
     }
 });
