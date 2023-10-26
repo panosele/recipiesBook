@@ -348,6 +348,7 @@ document.addEventListener("click", (event) =>{
     const element = event.target;
     
     if(element.id === "keyword-search-button"){
+        event.preventDefault();
         const keyword = document.querySelector("#keyword-search-input").value;
 
         document.querySelector("#div-header").style.display = "none";
@@ -364,6 +365,7 @@ document.addEventListener("click", (event) =>{
                 found = true;
             }
         }
+
         if(!found){
             const div = document.createElement("div");
             div.classList.add("recipe-div")
@@ -374,6 +376,7 @@ document.addEventListener("click", (event) =>{
             div.appendChild(H4);
             recipies_section.appendChild(div);
         }
+        
         recipies_section.style.display = "flex";
         recipies_section.classList.add("display-flex");
         // keyword.value = "";

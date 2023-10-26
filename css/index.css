@@ -5,8 +5,12 @@ header {
 }
 
 .navbar{
-    background-color: rgb(59, 146, 117);
+    background-color: rgb(59, 146, 117)!important;
     opacity: 0.85;
+}
+
+#keyword-search-button{
+    color: black;
 }
 
 #div-header {
@@ -52,7 +56,7 @@ h3 {
 
 /* BODY */
 body {
-    background-color: #ff94518e;
+    background-color: #F9B572;
     text-align: center;
 }
 
